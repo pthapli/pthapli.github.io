@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Falcon DSP - Cookie Attribution & Privacy Simulator</title>
-  <meta name="description" content="An interactive simulator showcasing third-party cookie blocking, Safari ITP restrictions, and first-party CNAME delegation conversion tracking.">
+  <title>Falcon Wearables - Premium Smartwatch Store</title>
+  <meta name="description" content="Discover the Falcon Smartwatch Premium. Sleek design, 30-day battery life, and advanced health monitoring.">
   
   <!-- Modern Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,162 +14,219 @@
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="style.css">
   
-  <!-- Falcon Conversion Tracking Tag (Placed as requested for real testing) -->
+  <!-- Falcon Conversion Tracking Tag (Loads real tracking script) -->
   <script src="https://tracker.pthapli.com/js/falcon.js" async></script>
 </head>
 <body>
+
+  <!-- Test Utility Bar (For simulated inbound traffic testing) -->
+  <div class="test-utility-bar">
+    <div class="utility-content">
+      <div class="utility-title">
+        <span class="utility-pulse"></span>
+        <strong>Attribution Test Panel</strong>
+        <span class="utility-desc">Use this to simulate inbound marketing clicks</span>
+      </div>
+      <div class="utility-actions">
+        <span id="url-param-status" class="param-status text-inactive">No click parameters detected</span>
+        <button class="btn-utility" onclick="simulateAdClick()">Simulate Ad Click (Add ?click_id) 🚀</button>
+        <button class="btn-utility btn-clear" onclick="clearUrlParams()">Clear URL ⟳</button>
+      </div>
+    </div>
+  </div>
 
   <div class="app-container">
     
     <!-- Header Section -->
     <header>
       <div class="logo-section">
-        <h1><span>🦅</span> Falcon DSP</h1>
-        <p>Attribution Tracking & Third-Party Cookie Sandbox</p>
+        <div class="logo-icon">🦅</div>
+        <div>
+          <h1>Falcon</h1>
+          <p>Next-Gen Wearable Tech</p>
+        </div>
       </div>
       
-      <div class="badge-container">
-        <!-- Live Integration Badge -->
-        <div id="real-status-badge" class="status-badge tag-inactive">
+      <div class="header-right">
+        <div id="falcon-status" class="status-badge tag-inactive">
           <span class="indicator"></span>
-          <span class="status-text">Checking Falcon...</span>
+          <span class="status-text">Checking Tag...</span>
+        </div>
+        <div class="cart-pill">
+          <span>🛒</span>
+          <span class="cart-count">1</span>
         </div>
       </div>
     </header>
 
-    <!-- Main Workspace Layout -->
-    <main class="simulator-layout">
+    <!-- Main Storefront View -->
+    <main id="storefront-view" class="storefront-layout">
       
-      <!-- Left Column: The Simulated Browser Sandbox -->
-      <section class="card">
-        <div class="card-header">
-          <div>
-            <span class="card-title">🌐 Sandboxed Browser Client</span>
-            <span class="card-subtitle">Interact with the simulated viewport below to trigger cookie and network flows</span>
-          </div>
-          <button class="shop-btn-reset" onclick="resetSimulator()">Reset Sandbox 🔄</button>
-        </div>
-        
-        <!-- Browser Frame -->
-        <div class="browser-frame" style="margin: 1.5rem;">
-          <!-- Browser Top bar -->
-          <div class="browser-bar">
-            <div class="browser-dots">
-              <span class="browser-dot red"></span>
-              <span class="browser-dot yellow"></span>
-              <span class="browser-dot green"></span>
+      <!-- Product Graphic Column -->
+      <section class="product-gallery">
+        <div class="gallery-glow"></div>
+        <div class="watch-container">
+          <!-- Premium CSS Watch Graphic -->
+          <div class="watch-band top"></div>
+          <div class="watch-case">
+            <div class="watch-bezel">
+              <div class="watch-screen">
+                <div class="screen-header">FALCON</div>
+                <div class="screen-heart-rate">
+                  <span class="heart-icon">❤️</span>
+                  <span class="pulse-bpm">72</span>
+                  <span class="bpm-unit">BPM</span>
+                </div>
+                <div class="screen-time">10:09</div>
+                <div class="screen-date">TUE 26</div>
+                <div class="screen-battery">
+                  <span class="battery-icon">🔋</span>
+                  <span>98%</span>
+                </div>
+                <div class="screen-footer">CNAME SECURE</div>
+              </div>
             </div>
-            
-            <div class="browser-navigation">
-              <button class="browser-nav-btn" onclick="resetSimulator()" title="Back to Publisher">◀</button>
-              <button class="browser-nav-btn" disabled>▶</button>
-              <button class="browser-nav-btn" onclick="resetSimulator()" title="Reload Page">⟳</button>
-            </div>
-            
-            <div class="browser-address-bar">
-              <span class="secure-icon" id="secure-icon">🔒</span>
-              <span id="mock-address-input">https://news-hub.com/technology/falcon-wearables-review</span>
-            </div>
+            <div class="watch-crown"></div>
           </div>
-          
-          <!-- Viewport Area (Where pages render dynamically) -->
-          <div class="browser-viewport" id="browser-viewport">
-            <!-- Rendered by app.js -->
-          </div>
-        </div>
-
-        <!-- Controls panel (Cookie blocking toggles and tracking protocols) -->
-        <div class="controls-panel">
-          <div class="control-group">
-            <label class="control-label" for="select-protocol">Tracking Protocol</label>
-            <div class="custom-select-wrapper">
-              <select id="select-protocol" class="control-select">
-                <option value="third-party">Third-Party Cookie Tracking (tracker.pthapli.com)</option>
-                <option value="first-party">First-Party (CNAME Delegation: track.advertiser.com)</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="control-group">
-            <label class="control-label" for="select-privacy">Browser Privacy Policy</label>
-            <div class="custom-select-wrapper">
-              <select id="select-privacy" class="control-select">
-                <option value="allow-all">Standard Browser (Allow Third-Party Cookies)</option>
-                <option value="block-3rd">Privacy-First Browser (Safari ITP / Chrome Block 3rd-Party)</option>
-              </select>
-            </div>
-          </div>
+          <div class="watch-band bottom"></div>
         </div>
       </section>
       
-      <!-- Right Column: Developer / Diagnostics Console -->
-      <aside class="sidebar">
-        
-        <!-- Diagnostic Attribution Ring -->
-        <div class="card attribution-status-card">
-          <div id="attribution-ring" class="status-ring pending">🕒</div>
-          <div id="attribution-title" class="status-title" style="color: var(--text-muted)">AWAITING SIMULATION</div>
-          <p id="attribution-desc" class="status-description">Follow the steps in the Mock Browser to trigger tracking events.</p>
+      <!-- Product Details Column -->
+      <section class="product-details">
+        <div class="tagline">ATTRIBUTION-SECURE HARDWARE</div>
+        <h2>Falcon Smartwatch Premium</h2>
+        <div class="price-container">
+          <span class="price-amount">$299.00</span>
+          <span class="price-currency">USD</span>
+          <span class="stock-badge">In Stock</span>
         </div>
-
-        <!-- Cookie Storage Visualizer -->
-        <section class="card">
-          <div class="card-header">
-            <span class="card-title">🍪 Browser Cookie Jar</span>
-          </div>
-          <div class="cookie-jar-body" id="cookie-jar-list">
-            <!-- Populated by app.js -->
-          </div>
-        </section>
         
-        <!-- Network Monitor -->
-        <section class="card">
-          <div class="card-header">
-            <span class="card-title">⚡ HTTP Network Monitor</span>
-          </div>
-          <div class="network-monitor-body" id="network-logs">
-            <!-- Populated by app.js -->
-          </div>
-        </section>
+        <p class="product-description">
+          A high-performance wearable engineered with medical-grade sensors, multi-week battery life, and first-party conversion tracking integration. Sync health metrics and check out securely.
+        </p>
 
-      </aside>
-
-    </main>
-
-    <!-- Bottom Section: Implementation Snippets & Sandbox Play -->
-    <section class="card">
-      <div class="card-header">
-        <span class="card-title">🛠️ Integration Playground</span>
-      </div>
-      <div class="integration-card-body">
-        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem;">
-          
-          <div>
-            <p class="integration-help-text" style="margin-bottom: 1rem;">
-              Deploy this tag across your pages to track conversions. Replace the domain with your CNAME-delegated subdomain (e.g. <code>track.yourdomain.com</code>) to enable secure, first-party cookie mapping.
-            </p>
-            
-            <div class="integration-code-block">
-              <button class="btn-copy" onclick="copyCodeSnippet()">Copy</button>
-              <pre><code>&lt;!-- Falcon Conversion Tracking Tag --&gt;
-&lt;script src="https://tracker.pthapli.com/js/falcon.js" async&gt;&lt;/script&gt;</code></pre>
+        <div class="spec-grid">
+          <div class="spec-card">
+            <span class="spec-icon">🔋</span>
+            <div>
+              <strong>30-Day Battery</strong>
+              <p>Ultra-efficient OLED display</p>
             </div>
           </div>
-          
-          <div class="integration-action-row">
-            <h4 style="color: #fff; font-size: 0.95rem; font-weight: 700;">Live Conversion Testbed</h4>
-            <p class="integration-help-text">
-              If the Falcon service is running at <code>tracker.pthapli.com</code>, you can execute a real conversion request in your live browser tab to inspect actual HTTP headers and cookies in the dev tools network panel.
-            </p>
-            <button id="btn-live-test" class="btn-live-test" onclick="fireRealConversion()" disabled>
-              <span>🚀</span> Fire Real Conversion Tag
-            </button>
+          <div class="spec-card">
+            <span class="spec-icon">🧠</span>
+            <div>
+              <strong>Sleep AI 2.0</strong>
+              <p>Predictive recovery modeling</p>
+            </div>
+          </div>
+          <div class="spec-card">
+            <span class="spec-icon">🩺</span>
+            <div>
+              <strong>PPG Optical Sensor</strong>
+              <p>Continuous heart-rate & SpO2</p>
+            </div>
+          </div>
+          <div class="spec-card">
+            <span class="spec-icon">🛡️</span>
+            <div>
+              <strong>Privacy First</strong>
+              <p>No third-party trackers</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="openCheckoutModal()">
+          Buy Now 💳
+        </button>
+      </section>
+      
+    </main>
+
+    <!-- Success View (Hidden by default) -->
+    <main id="success-view" class="success-layout" style="display: none;">
+      <div class="success-card">
+        <div class="success-icon">🎉</div>
+        <h2>Order Confirmed!</h2>
+        <p class="success-subtitle">Your Falcon Smartwatch order has been processed.</p>
+        
+        <div class="order-summary-box">
+          <div class="summary-row">
+            <span>Transaction ID</span>
+            <strong id="summary-txn-id" class="monospace">TXN-000000</strong>
+          </div>
+          <div class="summary-row">
+            <span>Item</span>
+            <strong>Falcon Smartwatch Premium</strong>
+          </div>
+          <div class="summary-row">
+            <span>Amount Paid</span>
+            <strong class="text-success">$299.00 USD</strong>
+          </div>
+        </div>
+
+        <div class="tracking-debug-box">
+          <span class="debug-label">ATTRIBUTION EVENT DISPATCHED</span>
+          <p id="tracking-dispatch-log">Sending purchase signal...</p>
+        </div>
+
+        <button class="btn-secondary" onclick="resetStore()">
+          Back to Storefront 🛒
+        </button>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Checkout Modal Overlay (Hidden by default) -->
+  <div id="checkout-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Secure Checkout</h3>
+        <button class="modal-close" onclick="closeCheckoutModal()">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <!-- Order Summary Section -->
+        <div class="checkout-item">
+          <div class="checkout-item-details">
+            <strong>Falcon Smartwatch Premium</strong>
+            <p>Model F-26 • Stealth Black • 44mm</p>
+          </div>
+          <span class="checkout-item-price">$299.00</span>
+        </div>
+        
+        <!-- Checkout Form -->
+        <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)">
+          <div class="form-group">
+            <label for="checkout-name">Cardholder Name</label>
+            <input type="text" id="checkout-name" required placeholder="Alex Rivers">
           </div>
           
-        </div>
-      </div>
-    </section>
+          <div class="form-group">
+            <label for="checkout-email">Email Address</label>
+            <input type="email" id="checkout-email" required placeholder="alex@newshub.com">
+          </div>
 
+          <div class="form-row">
+            <div class="form-group flex-2">
+              <label for="checkout-card">Card Number</label>
+              <input type="text" id="checkout-card" required placeholder="•••• •••• •••• 4242">
+            </div>
+            <div class="form-group flex-1">
+              <label for="checkout-expiry">Expiry</label>
+              <input type="text" id="checkout-expiry" required placeholder="MM/YY">
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-cancel" onclick="closeCheckoutModal()">Cancel</button>
+            <button type="submit" class="btn-submit">Complete Purchase ($299.00)</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
   <!-- JS Logic -->
