@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Falcon DSP - Cookie Attribution & Privacy Simulator</title>
+  <meta name="description" content="An interactive simulator showcasing third-party cookie blocking, Safari ITP restrictions, and first-party CNAME delegation conversion tracking.">
+  
+  <!-- Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Falcon Conversion Tracking Tag (Placed as requested for real testing) -->
+  <script src="https://tracker.pthapli.com/js/falcon.js" async></script>
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Header Section -->
+    <header>
+      <div class="logo-section">
+        <h1><span>🦅</span> Falcon DSP</h1>
+        <p>Attribution Tracking & Third-Party Cookie Sandbox</p>
+      </div>
+      
+      <div class="badge-container">
+        <!-- Live Integration Badge -->
+        <div id="real-status-badge" class="status-badge tag-inactive">
+          <span class="indicator"></span>
+          <span class="status-text">Checking Falcon...</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace Layout -->
+    <main class="simulator-layout">
+      
+      <!-- Left Column: The Simulated Browser Sandbox -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <span class="card-title">🌐 Sandboxed Browser Client</span>
+            <span class="card-subtitle">Interact with the simulated viewport below to trigger cookie and network flows</span>
+          </div>
+          <button class="shop-btn-reset" onclick="resetSimulator()">Reset Sandbox 🔄</button>
+        </div>
+        
+        <!-- Browser Frame -->
+        <div class="browser-frame" style="margin: 1.5rem;">
+          <!-- Browser Top bar -->
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <span class="browser-dot red"></span>
+              <span class="browser-dot yellow"></span>
+              <span class="browser-dot green"></span>
+            </div>
+            
+            <div class="browser-navigation">
+              <button class="browser-nav-btn" onclick="resetSimulator()" title="Back to Publisher">◀</button>
+              <button class="browser-nav-btn" disabled>▶</button>
+              <button class="browser-nav-btn" onclick="resetSimulator()" title="Reload Page">⟳</button>
+            </div>
+            
+            <div class="browser-address-bar">
+              <span class="secure-icon" id="secure-icon">🔒</span>
+              <span id="mock-address-input">https://news-hub.com/technology/falcon-wearables-review</span>
+            </div>
+          </div>
+          
+          <!-- Viewport Area (Where pages render dynamically) -->
+          <div class="browser-viewport" id="browser-viewport">
+            <!-- Rendered by app.js -->
+          </div>
+        </div>
+
+        <!-- Controls panel (Cookie blocking toggles and tracking protocols) -->
+        <div class="controls-panel">
+          <div class="control-group">
+            <label class="control-label" for="select-protocol">Tracking Protocol</label>
+            <div class="custom-select-wrapper">
+              <select id="select-protocol" class="control-select">
+                <option value="third-party">Third-Party Cookie Tracking (tracker.pthapli.com)</option>
+                <option value="first-party">First-Party (CNAME Delegation: track.advertiser.com)</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="select-privacy">Browser Privacy Policy</label>
+            <div class="custom-select-wrapper">
+              <select id="select-privacy" class="control-select">
+                <option value="allow-all">Standard Browser (Allow Third-Party Cookies)</option>
+                <option value="block-3rd">Privacy-First Browser (Safari ITP / Chrome Block 3rd-Party)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Right Column: Developer / Diagnostics Console -->
+      <aside class="sidebar">
+        
+        <!-- Diagnostic Attribution Ring -->
+        <div class="card attribution-status-card">
+          <div id="attribution-ring" class="status-ring pending">🕒</div>
+          <div id="attribution-title" class="status-title" style="color: var(--text-muted)">AWAITING SIMULATION</div>
+          <p id="attribution-desc" class="status-description">Follow the steps in the Mock Browser to trigger tracking events.</p>
+        </div>
+
+        <!-- Cookie Storage Visualizer -->
+        <section class="card">
+          <div class="card-header">
+            <span class="card-title">🍪 Browser Cookie Jar</span>
+          </div>
+          <div class="cookie-jar-body" id="cookie-jar-list">
+            <!-- Populated by app.js -->
+          </div>
+        </section>
+        
+        <!-- Network Monitor -->
+        <section class="card">
+          <div class="card-header">
+            <span class="card-title">⚡ HTTP Network Monitor</span>
+          </div>
+          <div class="network-monitor-body" id="network-logs">
+            <!-- Populated by app.js -->
+          </div>
+        </section>
+
+      </aside>
+
+    </main>
+
+    <!-- Bottom Section: Implementation Snippets & Sandbox Play -->
+    <section class="card">
+      <div class="card-header">
+        <span class="card-title">🛠️ Integration Playground</span>
+      </div>
+      <div class="integration-card-body">
+        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem;">
+          
+          <div>
+            <p class="integration-help-text" style="margin-bottom: 1rem;">
+              Deploy this tag across your pages to track conversions. Replace the domain with your CNAME-delegated subdomain (e.g. <code>track.yourdomain.com</code>) to enable secure, first-party cookie mapping.
+            </p>
+            
+            <div class="integration-code-block">
+              <button class="btn-copy" onclick="copyCodeSnippet()">Copy</button>
+              <pre><code>&lt;!-- Falcon Conversion Tracking Tag --&gt;
+&lt;script src="https://tracker.pthapli.com/js/falcon.js" async&gt;&lt;/script&gt;</code></pre>
+            </div>
+          </div>
+          
+          <div class="integration-action-row">
+            <h4 style="color: #fff; font-size: 0.95rem; font-weight: 700;">Live Conversion Testbed</h4>
+            <p class="integration-help-text">
+              If the Falcon service is running at <code>tracker.pthapli.com</code>, you can execute a real conversion request in your live browser tab to inspect actual HTTP headers and cookies in the dev tools network panel.
+            </p>
+            <button id="btn-live-test" class="btn-live-test" onclick="fireRealConversion()" disabled>
+              <span>🚀</span> Fire Real Conversion Tag
+            </button>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- JS Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
